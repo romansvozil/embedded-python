@@ -19,19 +19,13 @@ async fn main() -> PyResult<()> {
     let fut = Python::with_gil(|py| {
         let chrono_api = PyModule::new(py, "chrono_api")?;
         chrono_api.add_function(wrap_pyfunction!(walk, chrono_api)?)?;
-        
+
         let locals = PyDict::new(py);
         locals.set_item("chrono_api", chrono_api)?;
         
         py.run(&String::from_utf8(include_bytes!("./script.py").to_vec())?, None, Some(locals))?;
         
-        // let script_class = locals.get_item("SCRIPT").unwrap().downcast::<PyType>()?;
-        // let script_instance = script_class.call1((chrono_api, ))?;
-        println!("Locals: {:?}", locals);
-        pyo3_asyncio::tokio::into_future(py.eval("SCRIPT(chrono_api, locals()).run()", None, Some(locals))?)
-
-        // pyo3_asyncio::tokio::into_future(
-        //     script_instance.call_method0("run")?)
+        pyo3_asyncio::tokio::into_future(py.eval("SCRIPT(locals()).run()", None, Some(locals))?)
     })?;
 
     fut.await?;
