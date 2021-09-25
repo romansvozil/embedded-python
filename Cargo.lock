@@ -40,6 +40,7 @@ dependencies = [
 name = "embedded_python"
 version = "0.1.0"
 dependencies = [
+ "futures",
  "pyo3",
  "pyo3-asyncio",
  "tokio",

@@ -9,3 +9,4 @@ edition = "2018"
 pyo3 = { version = "0.14.5", features = ["auto-initialize"] }
 pyo3-asyncio = { version = "0.14", features = ["attributes", "tokio-runtime"] }
 tokio = "1.4"
+futures = "0.3.17"
