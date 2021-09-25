@@ -7,6 +7,7 @@ edition = "2018"
 
 [dependencies]
 pyo3 = { version = "0.14.5", features = ["auto-initialize"] }
-pyo3-asyncio = { version = "0.14", features = ["attributes", "tokio-runtime"] }
+# pyo3-asyncio = { version = "0.14", features = ["attributes", "tokio-runtime"] }
+pyo3-asyncio = { git = "https://github.com/romansvozil/pyo3-asyncio.git", version = "0.14", features = ["attributes", "tokio-runtime"] }
 tokio = "1.4"
 futures = "0.3.17"

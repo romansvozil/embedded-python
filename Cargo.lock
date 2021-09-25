@@ -387,8 +387,7 @@ dependencies = [
 [[package]]
 name = "pyo3-asyncio"
 version = "0.14.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "08097b330a06c83c704112fde04d27dda074818451809a4384b2a66c6d51d7b9"
+source = "git+https://github.com/romansvozil/pyo3-asyncio.git#4fb91ba4edcafe36df8749b67094005f33a1f0c3"
 dependencies = [
  "futures",
  "inventory",
@@ -401,8 +400,7 @@ dependencies = [
 [[package]]
 name = "pyo3-asyncio-macros"
 version = "0.14.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d3be08f3da9195947db0b6b64a9a5e91da602444c76f96ed32748d1ef1a89961"
+source = "git+https://github.com/romansvozil/pyo3-asyncio.git#4fb91ba4edcafe36df8749b67094005f33a1f0c3"
 dependencies = [
  "proc-macro2",
  "quote",
