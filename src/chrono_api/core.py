@@ -9,7 +9,7 @@ class LivingEntity(Entity):
     hp: int
     max_hp: int
     mp: int
-    max_map: int
+    max_mp: int
     level: int
 
 class Player(LivingEntity): ... 
@@ -46,3 +46,5 @@ class Client:
 async def get_clients() -> list[Client]: ...
 
 async def walk(duration: int) -> None: ...
+
+async def get_character() -> LivingEntity: ...
