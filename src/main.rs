@@ -1,6 +1,7 @@
 use pyo3::prelude::*;
 use pyo3::types::PyModule;
 use pyo3::wrap_pyfunction;
+use pyo3::wrap_pymodule;
 
 
 #[pyclass(subclass)]
@@ -61,12 +62,25 @@ async fn main() -> PyResult<()> {
 
     let fut = Python::with_gil(|py| {
         let chrono_api = PyModule::new(py, "chrono_api")?;
-        chrono_api.add_function(wrap_pyfunction!(walk, chrono_api)?)?;
-        chrono_api.add_function(wrap_pyfunction!(get_character, chrono_api)?)?;
-        chrono_api.add_class::<Entity>()?;
+
+        let core = PyModule::new(py, "core")?;
+        core.add_function(wrap_pyfunction!(walk, chrono_api)?)?;
+        core.add_function(wrap_pyfunction!(get_character, chrono_api)?)?;
+
+        let utils = PyModule::from_code(py, &String::from_utf8(include_bytes!("./chrono_api/utils.py").to_vec())?, "utils.py", "utils")?;
+
+        chrono_api.add_submodule(core)?;
+        chrono_api.add_submodule(utils)?;
 
         let globals = py.import("__main__")?.dict();
-        globals.set_item("chrono_api", chrono_api)?;
+        globals.set_item("__chrono_api", chrono_api)?;
+
+        py.run(r#"
+import sys
+sys.modules["chrono_api"] = __chrono_api
+sys.modules["chrono_api.core"] = __chrono_api.core
+sys.modules["chrono_api.utils"] = __chrono_api.utils
+"#, Some(globals), None)?;
 
         py.run(&String::from_utf8(include_bytes!("./script.py").to_vec())?, Some(globals), None)?;
         let script = py.eval("SCRIPT()", Some(globals), None)?;

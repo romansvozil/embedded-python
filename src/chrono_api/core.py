@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+""" Just a typings for the raw chrono_api, you shouldn't construct classes in this file directly """
+
 class Entity:
     x: int
     y: int
@@ -23,6 +25,9 @@ class Portal:
     y: int
 
 class Client:
+    @property
+    def client_id(self) -> str: ...
+
     @property
     async def character(self) -> Player: ...
     
