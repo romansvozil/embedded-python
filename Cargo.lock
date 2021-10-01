@@ -387,11 +387,12 @@ dependencies = [
 [[package]]
 name = "pyo3-asyncio"
 version = "0.14.0"
-source = "git+https://github.com/romansvozil/pyo3-asyncio.git#4fb91ba4edcafe36df8749b67094005f33a1f0c3"
+source = "git+https://github.com/awestlake87/pyo3-asyncio.git?branch=better-cancellation#633a512b73288945cc359be579265ffa0c844844"
 dependencies = [
  "futures",
  "inventory",
  "once_cell",
+ "pin-project-lite",
  "pyo3",
  "pyo3-asyncio-macros",
  "tokio",
@@ -400,7 +401,7 @@ dependencies = [
 [[package]]
 name = "pyo3-asyncio-macros"
 version = "0.14.0"
-source = "git+https://github.com/romansvozil/pyo3-asyncio.git#4fb91ba4edcafe36df8749b67094005f33a1f0c3"
+source = "git+https://github.com/awestlake87/pyo3-asyncio.git?branch=better-cancellation#633a512b73288945cc359be579265ffa0c844844"
 dependencies = [
  "proc-macro2",
  "quote",

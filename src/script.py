@@ -5,15 +5,15 @@ from asyncio import TimeoutError
 from asyncio import create_task
 
 import chrono_api.core as chrono_api
-from chrono_api.utils import print_numbers
 
 class ChronoScript: 
     async def run(self) -> None:
-        print_numbers()
 
         entity = await chrono_api.get_character()
         print(entity.name)
         print(entity.level)
+
+        chrono_api.walk(10)
 
         try:
             await wait_for(chrono_api.walk(5), 2.)
