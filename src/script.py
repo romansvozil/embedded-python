@@ -5,14 +5,20 @@ from asyncio import TimeoutError
 from asyncio import create_task
 
 import chrono_api.core as chrono_api
+from chrono_api.script import ScriptBase
 
-class ChronoScript: 
+def cool(): 
+    print("Called bro")
+
+class Script(ScriptBase): 
     async def run(self) -> None:
 
         entity = await chrono_api.get_character()
         print(entity.name)
         print(entity.level)
 
+        chrono_api.walk(10)
+        chrono_api.walk(10)
         chrono_api.walk(10)
 
         try:
@@ -29,5 +35,3 @@ class ChronoScript:
 
         create_task(wrap())
         await wrap()
-
-SCRIPT = ChronoScript

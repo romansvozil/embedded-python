@@ -1,0 +1,4 @@
+import script
+
+
+script.cool()
